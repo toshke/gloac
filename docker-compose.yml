@@ -9,5 +9,6 @@ services:
     volumes:
       - $HOME/.aws:/root/.aws
       - gem_cache:/usr/local/bundle
+      - $HOME/.gem:/root/.gem
     env_file:
       - .env

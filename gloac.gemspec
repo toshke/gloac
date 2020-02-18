@@ -5,7 +5,7 @@ require 'rake'
 
 Gem::Specification.new do |s|
   s.name = 'gloac'
-  s.version = '0.1'
+  s.version = "#{ENV['GEM_VERSION']}"
   s.summary = 'GitLab on AWS Cloud'
   s.description = ''
   s.authors = ['Nikola Tosic']
