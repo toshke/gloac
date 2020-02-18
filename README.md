@@ -16,7 +16,8 @@ gloac deploy -d config
 ## Intro
 
 Gloac (GitLab on Aws Cloud) is tool for building and deploying highly 
-configurable GitLab installations in the AWS Cloud. 
+configurable, operationally ready, 
+production grade GitLab installations in the AWS Cloud. 
 
 
 Gloac is powered by [cfhighlander](https://github.com/theonestack/cfhighlander), a
