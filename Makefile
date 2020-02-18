@@ -1,9 +1,9 @@
 .EXPORT_ALL_VARIABLES:
 
 RUN_RUBY_CMD=docker-compose run --rm -v $$PWD:/src -w /src ruby
-CFHL_DOCKER_TAG ?= latest
 
 GEM_VERSION ?= 0.0.1
+DOCKER_TAG ?= 0.0.1
 
 all: clean build test
 
@@ -24,6 +24,10 @@ publish: build
 rubyShell:
 	$(RUN_RUBY_CMD) bash
 .PHONY: rubyShell
+
+
+buildDocker: build
+	docker build -t gloac/gloac:$(DOCKER_TAG) .
 
 test:
 	$(RUN_RUBY_CMD) make _test
