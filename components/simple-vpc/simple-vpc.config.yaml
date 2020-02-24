@@ -29,9 +29,11 @@ internet_enabled: true
 ###    you can choose to deploy single in first AZ (cheaper, no HA)
 ###    or one Nat Gateway per availability zone (more expensive, internet access is in HA mode)
 nat_gateway:
-  enabled: true
+  enabled: false
   per_az:  false
 
+s3_endpoint: false
+dynamodb_endpoint: false
 # TODO:
 #subnets:
 #  private:

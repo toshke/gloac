@@ -138,7 +138,7 @@ CloudFormation do
           SubnetId Ref(private_subnet)
           RouteTableId Ref(rt_name)
         end
-        EC2_Route('PrivateSubnetInternetRoute' + ix) do
+        EC2_Route("PrivateSubnetInternetRoute#{ix}") do
           NatGatewayId Ref("NatGateway#{markers[ix]}")
           DestinationCidrBlock '0.0.0.0/0'
           RouteTableId Ref(rt_name)
@@ -179,19 +179,37 @@ CloudFormation do
 
 
   ## endpoints
-  EC2_VPCEndpoint('VPCEndpoint') do
-    VpcId Ref('VPC')
-    PolicyDocument({
-        Version: '2012-10-17',
-        Statement: [{
-            Effect: 'Allow',
-            Principal: '*',
-            Action: ['s3:*'],
-            Resource: ['arn:aws:s3:::*']
-        }]
-    })
-    ServiceName FnJoin("", ['com.amazonaws.', Ref('AWS::Region'), '.s3'])
-    RouteTableIds route_tables
+  if s3_endpoint then
+    EC2_VPCEndpoint('VPCEndpointS3') do
+      VpcId Ref('VPC')
+      PolicyDocument({
+          Version: '2012-10-17',
+          Statement: [{
+              Effect: 'Allow',
+              Principal: '*',
+              Action: ['s3:*'],
+              Resource: ['arn:aws:s3:::*']
+          }]
+      })
+      ServiceName FnSub('com.amazonaws.${AWS::Region}.s3')
+      RouteTableIds route_tables
+    end
+  end
+  if dynamodb_endpoint then
+    EC2_VPCEndpoint('VPCEndpointDynamo') do
+      VpcId Ref('VPC')
+      PolicyDocument({
+          Version: '2012-10-17',
+          Statement: [{
+              Effect: 'Allow',
+              Principal: '*',
+              Action: ['dynamodb:*'],
+              Resource: ['*']
+          }]
+      })
+      ServiceName FnSub('com.amazonaws.${AWS::Region}.dynamodb')
+      RouteTableIds route_tables
+    end
   end
 
 

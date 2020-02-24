@@ -1,0 +1,30 @@
+name: gitlab-redis
+
+###
+###  List of availability zones where
+###  to deploy redis cache clusters to
+###
+availability_zones:
+  - ap-southeast-2a
+  - ap-southeast-2b
+  - ap-southeast-2c
+
+# sizing and networking
+cache_instance_type: cache.t3.small
+port: 6379
+family: redis5.0
+
+## backup, ops and encryption settings
+encrypt_at_rest: false
+encrypt_at_transit: false
+snapshot_retention_days: 7
+minor_upgrade_auto: true
+
+## allow to pass snapshot data for cluster creation
+## changing this cfn parameter replaces the whole stack
+restore_from_s3_snapshot: false
+restore_from_snapshot: false
+
+# cluster setting
+cluster: false
+cluster_nodes: 1
