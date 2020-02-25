@@ -1,4 +1,3 @@
-https://trello.com/b/3EHfTU0P/gloac
 
 ### Provisioning
 
