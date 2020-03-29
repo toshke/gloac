@@ -2,7 +2,7 @@
 ###  name property is used to name vpc, and for
 ###   tagging of related configuration values
 ###
-name: gitlab
+name: meetup-vpc
 
 
 ###
@@ -18,7 +18,7 @@ availability_zones:
 ### network CIDR
 ###  subnet CIDRs are created by taking sub-sequent CIDR blocks
 ###  out of this master range
-cidr: 172.16.0.0/16
+cidr: 10.150.0.0/16
 
 ### this property acts as a feature flag for public subnets
 ###   connected to the internet via Internet Gateway

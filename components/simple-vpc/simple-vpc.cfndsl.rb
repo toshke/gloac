@@ -18,7 +18,7 @@ CloudFormation do
   r1 = NetAddr::CIDR.create('172.16.0.0/12')
   r2 = NetAddr::CIDR.create('10.0.0.0/8')
   r3 = NetAddr::CIDR.create('192.168.0.0/16')
-  ok = (r1.contains? given_range) or (r2.contains? given_range) or (r3.contains? given_range)
+  ok = (r1.contains? given_range) || (r2.contains? given_range) || (r3.contains? given_range)
   unless ok
     STDERR.print("CfndDSL VPC: #{cidr} must be valid private range!")
     exit 1
